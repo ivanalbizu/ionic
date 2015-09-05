@@ -1,0 +1,12 @@
+<ion-view view-title="Productos">
+  <ion-content>
+      <div class="card">
+        <ion-item ng-repeat="product in products" href="#/app/product/{{product.id}}">
+          <h2>ID: {{product.id}} | Nombre {{product.name}} </h2>
+            <ul>
+              <li></li>
+            </ul>
+        </ion-item>
+      </div>
+  </ion-content>
+</ion-view>

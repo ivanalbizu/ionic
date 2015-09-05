@@ -1,0 +1,9 @@
+<ion-view view-title="Clientes">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="customer in customers" href="#/app/customer/{{customer.id}}">
+        {{customer.nombre}} | {{customer.id}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

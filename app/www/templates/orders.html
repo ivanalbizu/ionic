@@ -1,0 +1,14 @@
+<ion-view view-title="Presupuestos">
+  <ion-content>
+    <ion-list>
+      <div class="card">
+        <ion-item ng-repeat="order in orders" href="#/app/order/{{order.id}}">
+          <h2>Factura Nº {{order.id}} | {{order.date_order}}</h2>
+            <ul>
+              <li>Cantidad total: {{order.amount_total}} €</li>
+            </ul>
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

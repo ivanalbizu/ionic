@@ -1,0 +1,15 @@
+<ion-view view-title="Factura">
+  <ion-content>
+    <div class="item item-divider">
+      <h2>Factura {{invoice.invoice_detail.invoice_id}}</h2>
+      <h2>Nº {{invoice.invoice_detail.invoice_number}}</h2>
+      <h2>
+        <span ng-show="invoice.invoice_detail.invoice_name != false">Nombre {{invoice.invoice_detail.invoice_name}}</span>
+        <span ng-show="invoice.invoice_detail.invoice_name == false">Borrador</span>
+      </h2>
+    </div>
+    <div class="item item-text-wrap">
+      <p ng-repeat="li in invoice.lineas">Id producto: {{li.id}} | Nombre: {{li.product}}</p>
+    </div>
+  </ion-content>
+</ion-view>

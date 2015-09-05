@@ -1,0 +1,22 @@
+<ion-view view-title="Usuario">
+  <ion-content>
+    <div class="list card">
+      <!-- Basado en user.html -->
+      <div class="item item-avatar">
+        <img src="data:image/jpeg;base64,{{customer.image}}" />
+        <h2>{{customer.nombre}}</h2>
+        <p>ID usuario: {{customer.id}}</p>
+        <p ng-if="customer.email">Email: <a href="mailto:{{customer.email}}">{{customer.email}}</a></p>
+        <p ng-if="customer.street">Street: {{customer.street}}</p>
+        <p ng-if="customer.city">City: {{customer.city}}</p>
+        <p ng-if="customer.zip">ZIP: {{customer.zip}}</p>
+        <p ng-if="customer.website">Website: <a href="{{customer.website}}" target="_blank">{{customer.website}}</a></p>
+        <hr>
+        <p ng-if="customer.contact_email || customer.contact_name">Persona de contacto</p>
+        <p ng-if="customer.contact_name">Nombre: {{customer.contact_name}}</p>
+        <p ng-if="customer.contact_email">Email: <a href="mailto:{{customer.contact_email}}">{{customer.contact_email}}</a></p>
+      </div>
+    <form action=""><input ng-model="data.username" type="text"></form>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,30 @@
+<ion-view view-title="Usuario">
+  <ion-content>
+    <div class="list card">
+
+      <div class="item item-avatar">
+        <img src="data:image/jpeg;base64,{{user.image}}" />
+        <h2>{{user.nombre}}</h2>
+        <p>ID usuario: {{user.id}}</p>
+      </div>
+
+      <div class="item item-body">
+        <p>Ventas:
+          <span ng-show="user[0].ventas == '9'">Mostrar las iniciativas propias</span>
+          <span ng-show="user[0].ventas == '10'">Responsable</span>
+          <span ng-show="user[0].ventas == '36'">Ver todas las iniciativas</span>
+        </p>
+        <p>Proyecto:
+          <span ng-show="user[0].proyecto == '48'">Usuario</span>
+          <span ng-show="user[0].proyecto == '49'">Responsable</span>
+          <span ng-show="user[0].proyecto == false">--</span>
+        </p>
+        <p>
+          <a href="#" class="subdued">1 Like</a>
+          <a href="#" class="subdued">5 Comments</a>
+        </p>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>
