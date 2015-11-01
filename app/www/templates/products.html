@@ -1,4 +1,7 @@
-<ion-view view-title="Productos">
+<ion-view view-title="Products">
+<ion-nav-buttons side="right">
+  <button class="button" ng-click="addProduct()">+</button>
+</ion-nav-buttons>
   <ion-content>
       <div class="card">
         <ion-item ng-repeat="product in products" href="#/app/product/{{product.id}}">

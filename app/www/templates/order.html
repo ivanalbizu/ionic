@@ -1,11 +1,17 @@
 <ion-view view-title="Presupuesto">
   <ion-content>
     <div class="item item-divider">
-      <h2>Presupuesto {{order.order_detail.order_name}}</h2>
-      <h2>Fecha {{order.order_detail.order_date}}</h2>
+      <h2>Order: {{order.order_detail.order_name}}</h2>
+      <h2>Date: {{order.order_detail.order_date}}</h2>
     </div>
-    <div class="item item-text-wrap">
-      <p ng-repeat="li in order.lineas">Id producto: {{li.id}} | Nombre: {{li.product}}</p>
+    <div class="item item-text-wrap" ng-show="order.lineas.length > 0">
+      <p ng-repeat="li in order.lineas">
+        Id product: {{li.id}} | Name: {{li.product}}<br />
+        Quantity: {{li.product_uom_qty}} | Price unit: {{li.price_unit}}
+      </p>
     </div>
   </ion-content>
+
+  <button class="button button-float"><i class="icon ion-plus"></i></button>
+
 </ion-view>

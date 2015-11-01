@@ -1,0 +1,27 @@
+<ion-view view-title="Create Order">
+  <ion-content>
+    <form method="POST" action="http://localhost:8080/create_order">
+      <div class="list">
+
+        <label class="item item-input item-select">
+          <span class="input-label">Client</span>
+          <select name="customer_id" ng-controller="CustomersCtrl">
+            <option value="{{customer.id}}" ng-repeat="customer in customers">{{customer.nombre}}</option>
+          </select>
+        </label>
+
+        <!-- Eliminate: functionality add product to order in NEW VIEW  -->
+        <label class="item item-input item-select">
+          <span class="input-label">Product</span>
+          <select name="product_id" ng-controller="ProductsCtrl">
+            <option value="{{product.id}}" ng-repeat="product in products">{{product.name}}</option>
+          </select>
+        </label>
+        <!-- Eliminate: functionality add product to order in NEW VIEW  -->
+
+        <button class="button button-block button-positive" ng-hide="state=='0'">Create Order</button>
+
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

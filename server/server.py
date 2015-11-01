@@ -1,9 +1,14 @@
 import web
+from web import form
 import odoorpc
 from odoorpc import rpc
 import json
 import string
 
+'''
+http://pythonhosted.org/OdooRPC/tuto_browse_methods.html
+https://github.com/osiell/odoorpc/blob/master/odoorpc/tests/test_model.py
+'''
 
 urls = (
     '/',                'index',
@@ -12,14 +17,19 @@ urls = (
     '/customers',       'customers',
     '/customer/(.+)',   'customer',
     '/orders',          'orders',
+    '/create_order',    'create_order',
     '/order/(.+)',      'order',
     '/invoices',        'invoices',
     '/invoice/(.+)',    'invoice',
     '/products',        'products',
     '/product/(.+)',    'product',
-
+    '/testedit/(.+)',    'testedit',
 )
-
+#postgresql://admingkjiqmy:l5BXAQ4892et@127.7.171.130:5432
+hostname = 'localhost'
+username = 'admingkjiqmy'
+password = 'l5BXAQ4892et'
+database = 'myodoo'
 
 
 user = ''
@@ -27,7 +37,18 @@ odoo = odoorpc.ODOO('localhost', port=8069)
 odoo.login('demo','admin','admin')
 user = odoo.env.user
 
+'''
+odoo = odoorpc.ODOO('postgresql://admingkjiqmy:l5BXAQ4892et@127.7.171.130:5432')
+odoo.login('odooV1610','admin','admin')
+user = odoo.env.user
+'''
+#cnt = rpc.ConnectorJSONRPC('127.7.171.130', port=5432)
+#cnt.proxy_json.web.session.authenticate(db='myodoo',login='admingkjiqmy',password='l5BXAQ4892et')
 
+class testedit(object):
+    def POST(self):
+        data = web.input()
+        test = data.algo
 
 class index:
     def GET(self):
@@ -45,7 +66,6 @@ class users:
         for user in Users.browse(user_ids):
             data.extend([{'nombre':user.name,'id':user.id, 'activo':user.active}])
         return json.dumps(data)
-
 
 class user:
     def GET(self, idu):
@@ -65,8 +85,8 @@ class user:
             'id':user.id,
             'image':i,
         })
-
         return json.loads(json.dumps(data))
+
 
 class customers:
     def GET(self):
@@ -78,7 +98,6 @@ class customers:
         customer_ids = Customers.search([])
         for customer in Customers.browse(customer_ids):
             data.extend([{'nombre':customer.name,'id':customer.id}])
-            print data
         return json.dumps(data)
 
 class customer:
@@ -107,8 +126,8 @@ class customer:
             'contact_email':customer.child_ids.email,
             'contact_name':customer.child_ids.name,
         })
-
         return json.loads(json.dumps(data))
+
 
 class orders:
     def GET(self):
@@ -125,7 +144,6 @@ class orders:
                     'date_order': str(order.date_order),
                     'amount_total':order.amount_total
                 }])
-
         return json.dumps(data)
 
 
@@ -147,6 +165,29 @@ class order:
         order_detail = json.loads(json.dumps({'order_id':order.id, 'order_date':str(order.date_order), 'order_name':order.name}))
         pedido = {'lineas':data,'order_detail':order_detail}
         return json.dumps(pedido)
+
+class create_order:
+    '''
+    def GET(self):
+        form = myform()
+        return render.formtest(form)
+    '''
+    def POST(self):
+        #form = myform()
+        web.header('Access-Control-Allow-Origin',      '*')
+        web.header('Access-Control-Allow-Credentials', 'true')
+        web.header('Content-Type', 'application/json')
+        data = form['test'].value
+        data2 = web.input()
+        data3 = web.input(id=[])
+        print type(data3)
+        Orders = odoo.env['sale.order']
+        Orders.create({'partner_id':6})
+        '''
+        User = odoo.env['res.users']
+        User.write({'name': "Demo Portal User"})
+        '''
+        return True
 
 
 class invoices:

@@ -1,0 +1,28 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Add new product</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeAddProduct()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="saveAddProduct()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Product name</span>
+          <input type="text" ng-model="loginData.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Client</span>
+          <select ng-controller="CustomersCtrl">
+            <option value="{{customer.id}}" ng-repeat="customer in customers">{{customer.nombre}}</option>
+          </select>
+        </label>
+
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Save Product</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>
